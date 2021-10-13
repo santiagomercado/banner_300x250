@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Banner</title>
+		<script language="javascript">
+			//Initialize Enabler
+			if (Enabler.isInitialized()) {
+				init();
+			} else {
+				Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+			}
+			//Run when Enabler is ready
+			function init(){
+				if(Enabler.isPageLoaded()){
+					politeInit();
+				}else{
+					Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+				}
+			}
+			//Loader
+			function politeLoad(urls, onComplete) {
+			    var l = urls.length,
+			        loaded = 0,
+			        checkProgress = function() {
+			            if (++loaded === l && onComplete) {
+			                onComplete();
+			            }
+			        },
+			        i;
+			    for (i = 0; i < l; i++) {
+			    	//Using the Enabler script loader to politely load the javascript
+			        Enabler.loadScript(urls[i], checkProgress);
+			    }
+			}
+			function politeInit(){
+				// Load scripts
+				politeLoad(['https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js',
+				            'script.js'], function() {
+				            	Banner.init();
+				           });
+
+				//Load in CSS
+				var extCSS=document.createElement('link');
+				extCSS.setAttribute("rel", "stylesheet");
+				extCSS.setAttribute("type", "text/css");
+				extCSS.setAttribute("href", Enabler.getUrl("styles.css"));
+
+				//Load fonts
+				var gapis=document.createElement('link');
+				gapis.setAttribute("rel", "preconnect");
+				gapis.setAttribute("href", "https://fonts.googleapis.com");
+
+				var gstatic=document.createElement('link');
+				gstatic.setAttribute("rel", "preconnect");
+				gstatic.setAttribute("href", "https://fonts.gstatic.com");
+				gstatic.setAttribute("crossorigin","");
+
+				var bn_font=document.createElement('link');
+				bn_font.setAttribute("rel", "stylesheet");
+				bn_font.setAttribute("href", "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap&text=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+				var js_font=document.createElement('link');
+				js_font.setAttribute("rel", "stylesheet");
+				js_font.setAttribute("href", "https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap&text=%C2%AE");
+
+				document.getElementsByTagName("head")[0].appendChild(extCSS);
+				document.getElementsByTagName("head")[0].appendChild(gapis);
+				document.getElementsByTagName("head")[0].appendChild(gstatic);
+				document.getElementsByTagName("head")[0].appendChild(bn_font);
+				document.getElementsByTagName("head")[0].appendChild(js_font);
+
+				document.getElementById("banner").style.opacity=1;
+				document.getElementById("loader-container").style.opacity=0;
+				document.getElementById("loader-container").style.display = "none";
+				document.getElementById("banner").style.display = "block";
+			};
+		</script>
+		<style>
+		html, body{ margin: 0; padding: 0; }
+		html { box-sizing: border-box; }
+		*, *:before, *:after { box-sizing: inherit; }
+		.size { width: 300px; height: 250px; }
+		#loader-container{position:relative;}
+		#loader-container, #banner{border: 1px #666666 solid;}
+		#loader-container, .loader:before, .loader:after {background:#77ccff;}
+		.loader, .loader:before, .loader:after {
+		  border-radius: 50%;
+		}
+		.loader:before, .loader:after {
+		  position: absolute;
+		  content: '';
+		}
+		.loader:before {
+		  width: 5.2em;
+		  height: 10.2em;
+		  border-radius: 10.2em 0 0 10.2em;
+		  top: -0.1em;
+		  left: -0.1em;
+		  -webkit-transform-origin: 5.2em 5.1em;
+		  transform-origin: 5.2em 5.1em;
+		  -webkit-animation: load2 2s infinite ease 1.5s;
+		  animation: load2 2s infinite ease 1.5s;
+		}
+		.loader {
+		  font-size: 11px;
+		  text-indent: -99999em;
+		  margin: 70px auto;
+		  position: absolute;
+		  width: 10em;
+		  height: 10em;
+		  right: 0;
+		  left: 0;
+		  box-shadow: inset 0 0 0 1em #f3f3f3;
+		  -webkit-transform: translateZ(0);
+		  -ms-transform: translateZ(0);
+		  transform: translateZ(0);
+		}
+		.loader:after {
+		  width: 5.2em;
+		  height: 10.2em;
+		  border-radius: 0 10.2em 10.2em 0;
+		  top: -0.1em;
+		  left: 5.1em;
+		  -webkit-transform-origin: 0px 5.1em;
+		  transform-origin: 0px 5.1em;
+		  -webkit-animation: load2 2s infinite ease;
+		  animation: load2 2s infinite ease;
+		}
+		@-webkit-keyframes load2 {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		@keyframes load2 {
+		  0% {
+		    -webkit-transform: rotate(0deg);
+		    transform: rotate(0deg);
+		  }
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		    transform: rotate(360deg);
+		  }
+		}
+		</style>
+	</head>
+	<body>
+
+		<div id="loader-container" class="size">
+			<div class="loader">
+			</div>
+		</div>
+
+		<div id="banner" class="size" style="display:none;opacity:0;">
+
+			<img id="bg" class="absolute size" src="assets/bg.png">
+			<img id="logo" class="absolute size" src="assets/miracle-gro-all-purpose-logo.png">
+			<img id="packshot" class="absolute size" src="assets/miracle-gro-all-purpose-packshot.png">
+
+			<div id="copy-1" class="copy absolute">Want<br>Healthier<br>Plants?</div>
+			<div id="copy-2" class="copy absolute hidden">A little<br>drop<br>of this</div>
+			<div id="copy-3" class="copy absolute hidden">Grows<br>them twice<br>as big</div>
+
+			<img id="bg2" class="absolute hidden size" src="assets/bg2.png">
+			<div id="copy-4" class="copy absolute hidden">Miracle-Gro&reg;<br>All Purpose<br>Plant Food</div>
+			<div id="copy-5" class="copy absolute hidden">Plants Need<br>Love and<br>Miracle-Gro&reg;</div>
+
+			<div id="main-click" class="size absolute click"><!--Blank DIV to capture the main exit--></div>
+			<div id="cta" class="absolute hidden click">
+				GET GROWING HERE
+				<svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="30" viewBox="0 0 400 400">
+						<path id="arrow" fill="#ffffff" stroke="#ffffff" stroke-width="15" d="M295.6 163.7c-5.1 5-5.1 13.3-.1 18.4l60.8 60.9H124.9c-7.1 0-12.9 5.8-12.9 13s5.8 13 12.9 13h231.3l-60.8 60.9c-5 5.1-4.9 13.3.1 18.4 5.1 5 13.2 5 18.3-.1l82.4-83c1.1-1.2 2-2.5 2.7-4.1.7-1.6 1-3.3 1-5 0-3.4-1.3-6.6-3.7-9.1l-82.4-83c-4.9-5.2-13.1-5.3-18.2-.3z"/>
+				</svg>
+			</div>
+		</div>
+	</body>
+</html>

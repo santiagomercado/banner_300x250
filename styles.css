@@ -1,0 +1,66 @@
+body{
+	font-family: sans-serif;
+	color: #fff;
+}
+
+.hidden{
+	opacity: 0;
+}
+
+.click {
+	cursor:pointer;
+}
+
+.absolute {
+	position: absolute;
+}
+
+#banner {
+	background: #f3f3f3;
+	position: relative;
+	overflow: hidden;
+}
+
+#main-click {
+	position: absolute;
+	z-index: 3;
+}
+
+#cta
+{
+	background-color: #00943C;
+	border-radius: 10px;
+	font-size: 19px;
+	font-family: 'Bebas Neue', cursive;
+	bottom: 15px;
+	left: -40px;
+	padding: 8px 12px;
+	z-index: 3;
+}
+
+svg {
+  pointer-events: none;
+}
+
+#packshot,#logo {
+	z-index: 2;
+}
+
+.copy {
+	font-family: 'Josefin Sans','Bebas Neue', cursive;
+	font-weight: bold;
+	font-size: 32px;
+	line-height: 1;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+#copy-1 {
+	margin-left: 25px;
+}
+
+#copy-2,#copy-3,#copy-4,#copy-5{
+	left:-40px;
+}
