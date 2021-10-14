@@ -12,7 +12,7 @@ Banner.animate = function(){
 	let d_arrow = 0.2;
 	let tl = gsap.timeline();
 	tl
-		.to('#copy-1', {x:-35, opacity:0, duration: d},"+=1.6")
+		.from('#copy-1', {x:65, opacity:1, duration: d},"+=1.6")
 
 		.to('#copy-2', {x:65, opacity:1, duration: d})
 		.to('#copy-2', {x:0, opacity:0, duration: d}, "+=2")

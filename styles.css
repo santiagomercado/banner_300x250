@@ -57,10 +57,10 @@ svg {
 	transform: translateY(-50%);
 }
 
-#copy-1 {
+/*#copy-1 {
 	margin-left: 25px;
-}
+}*/
 
-#copy-2,#copy-3,#copy-4,#copy-5{
+#copy-1,#copy-2,#copy-3,#copy-4,#copy-5{
 	left:-40px;
 }
