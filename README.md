@@ -22,4 +22,4 @@ Basic HTML files to check that the exit clicks redirect properly.
 Clone this repo in your local system  
 > `git clone https://github.com/santiagomercado/banner_300x250.git`  
 
-Open the `index.html` file in a web browser. The banner was tested in Firefox, Chrome, Opera and Internet Explorer.
+Open the `index.html` file in a web browser. The banner was tested in Firefox, Chrome, Opera, Edge and Internet Explorer.
